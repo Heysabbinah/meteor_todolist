@@ -82,13 +82,13 @@ ul {
   position: relative;
 }
 
-li {
+li {   /*----ligne ajoutee en dessous de chaque do ----*/
   position: relative;
   list-style: none;
   padding: 15px;
-  border-bottom: #eee solid 1px;
+  border-bottom: #f05064 solid 1px;
+  color: #484848;
 }
-
 
 li .text {
   margin-left: 10px;
