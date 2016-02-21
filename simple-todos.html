@@ -19,11 +19,18 @@
 
  {{> loginButtons}}
 
+<!-- ////// Only show add task form if logged in -->
+ {{#if currentUser}}
+        <form class="new-task">
+          <input type="text" name="text" placeholder="Type to add new tasks" />
+        </form>
+      {{/if}}
+
  <!-- -->
 
-      <form class="new-task">
+     <!--  <form class="new-task">
         <input type="text" name="text" placeholder="Type to add new tasks" />
-      </form>
+      </form> -->
     </header>
  
     <ul>
@@ -35,11 +42,27 @@
 </body>
  
 <template name="task">
-  <li class="{{#if checked}}checked{{/if}}">
+
+  <!-- Add private class to private tasks -->
+
+   <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
+  <!-- -->
     <button class="delete">&times;</button>
  
     <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
- 
-    <span class="text">{{text}}</span>
+
+<!-- button for users to mark a task as private -->
+
+{{#if isOwner}}
+      <button class="toggle-private">
+        {{#if private}}
+          Private
+        {{else}}
+          Public
+        {{/if}}
+      </button>
+    {{/if}}
+ <!-- add a Spacebars statement to display the username field on each task right before the text: -->
+    <span class="text"><strong>{{username}}</strong> - {{text}}</span>
   </li>
 </template>
