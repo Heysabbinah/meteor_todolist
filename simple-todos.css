@@ -21,12 +21,12 @@ body {
   max-width: 700px;
   margin: 0 auto;
   min-height: 100%;
-  background-color: black;
+  background-color: white;
 }
 
 header {
   background-color: black;
-  background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
+  background-color: white;
   padding: 20px 15px 15px 15px;
   position: relative;
 }
@@ -43,21 +43,24 @@ h1 {
   margin-right: 1em;
 }
 
-form {
+form { /* where i add a new ask */
   margin-top: 10px;
   margin-bottom: -10px;
   position: relative;
-  
+
 }
 
 .new-task input {
   box-sizing: border-box;
-  padding: 10px 0;
+  padding: 7px 0;
+  padding-left: 10px;
   background: transparent;
-  border: none;
-  width: 100%;
+  border: 1px solid gray;
+  width: 60%;
   padding-right: 80px;
-  font-size: 1em;
+  font-size: 1.3em;
+  color: #1df7c6;
+  background-color: white;
 }
 
 .new-task input:focus{
