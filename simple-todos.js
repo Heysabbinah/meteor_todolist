@@ -17,8 +17,21 @@ if (Meteor.isClient) {
   // This code only runs on the client
   Template.body.helpers({
     tasks: function () {
-      // Show newest tasks at the top
-      return Tasks.find({}, {sort: {createdAt: -1}});
+      // function qui montrera que les task qui ne sont pas coches
+      if (Session.get("hideCompleted")) {
+        // If hide completed is checked, filter tasks
+        return Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}});
+      } else {
+        // Otherwise, return all of the tasks
+        return Tasks.find({}, {sort: {createdAt: -1}});
+      }
+    },
+    hideCompleted: function () {
+      return Session.get("hideCompleted");
+    },  
+    // for incompleteCount = compte les incomplete tasks
+    incompleteCount: function () {
+      return Tasks.find({checked: {$ne: true}}).count();
     }
   });
 
@@ -40,7 +53,13 @@ Template.body.events({
  
       // Clear form
       event.target.text.value = "";
+    
+    // Event handler for checkbox
+    },
+    "change .hide-completed input": function (event) {
+      Session.set("hideCompleted", event.target.checked);
     }
+
   });
 
 /* ----- Event handlers for Task buttons update or remove task ----------*/
@@ -55,6 +74,11 @@ Template.task.events({
     "click .delete": function () {
       Tasks.remove(this._id);
     }
+  });
+/* ----- configure the accounts UI to use usernames instead of email addresses ----------*/
+
+Accounts.ui.config({
+    passwordSignupFields: "USERNAME_ONLY"
   });
 
 }

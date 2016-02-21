@@ -5,8 +5,22 @@
 <body>
    <div class="container">
     <header>
-      <h1>Todo List</h1>
+      <!-- Display incompleteCount = compte les incomplete tasks-->
+      <h1>Todo List ({{incompleteCount}})</h1>
+
+<!--- ///////// add a checkbox /////// -->
+
+      <label class="hide-completed">
+        <input type="checkbox" checked="{{hideCompleted}}" />
+        Hide Completed Tasks
+      </label>
  
+ <!--- ///////// add loginButtons /////// -->
+
+ {{> loginButtons}}
+
+ <!-- -->
+
       <form class="new-task">
         <input type="text" name="text" placeholder="Type to add new tasks" />
       </form>
